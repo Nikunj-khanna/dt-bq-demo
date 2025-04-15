@@ -4,7 +4,7 @@
          target_schema='snapshot',
          strategy='check',
          unique_key='customer_id',
-         check_cols='address'
+         check_cols=['address'],
 
 
     )
@@ -12,5 +12,5 @@
 
 }}
 
-select * from raw.customer;
+select * from raw.Customer
 {%endsnapshot%}
