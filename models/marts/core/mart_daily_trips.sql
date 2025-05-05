@@ -1,6 +1,6 @@
-select trip_date,
+select trip_date,trip_year,
 count(*) as total_trips,
 count(distinct user_type) as user_types,
 avg(temperature) as avg_temp
 from {{ref("int_bike_weather")}}
-group by trip_date
+group by trip_date,trip_year
