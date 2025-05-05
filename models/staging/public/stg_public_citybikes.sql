@@ -10,7 +10,7 @@ renamed as (
     tripduration AS trip_duration,
     date_trunc('hour', starttime) as trip_hour,
     date(starttime) as trip_date,
-    year(start_time) as trip_year,
+    year(starttime) as trip_year,
     starttime AS start_time,
     stoptime AS stop_time,
     start_station_id,
