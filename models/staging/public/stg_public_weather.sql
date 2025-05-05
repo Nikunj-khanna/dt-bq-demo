@@ -8,6 +8,8 @@ renamed as (
 
   SELECT
     timestamp AS weather_timestamp,
+    date_trunc('hour', timestamp) as weather_hour,
+    date(timestamp) as weather_date,
     temperature,
     temp_max,
     temp_min,

@@ -8,6 +8,8 @@ renamed as (
 
    SELECT
     tripduration AS trip_duration,
+    date_trunc('hour', starttime) as trip_hour,
+    date(starttime) as trip_date,
     starttime AS start_time,
     stoptime AS stop_time,
     start_station_id,
@@ -19,9 +21,13 @@ renamed as (
     end_station_latitude,
     end_station_longitude,
     bikeid AS bike_id,
-    Dummy AS dummy,  -- Optional: rename if "Dummy" is a placeholder
+    Dummy AS placeholder,  
     usertype AS user_type,
-    birth_year,       -- Optional: CAST(birth_year AS INT) if needed
+    CASE 
+        WHEN birth_year IS NULL OR TRIM(birth_year) = '' THEN NULL
+        WHEN TRY_CAST(birth_year AS INT) IS NOT NULL THEN CAST(birth_year AS INT)
+        ELSE NULL
+    END AS birth_year,   
     gender,
     from source
 
