@@ -1,0 +1,26 @@
+version: 2
+sources:
+  - name: public
+    description: source  data
+    database: PC_DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: CITIBIKE_TRIPS
+        description: main City Bike Trips Table
+        
+        columns:
+          - name: BIKEID
+            description: unique Bike ID
+            tests: 
+              - unique
+              - not_null
+
+      - name: WEATHER
+        description: main Weather table
+        columns:
+          - name: TIMESTAMP
+            description: Foreign Key to STARTTIME
+            tests:
+              - relationships:
+                  to: source('public', 'CITIBIKE_TRIPS')
+                  field: STARTTIME
