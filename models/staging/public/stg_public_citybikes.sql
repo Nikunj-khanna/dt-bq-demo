@@ -22,7 +22,7 @@ renamed as (
     Dummy AS dummy,  -- Optional: rename if "Dummy" is a placeholder
     usertype AS user_type,
     birth_year,       -- Optional: CAST(birth_year AS INT) if needed
-    gender
+    gender,
     from source
 
 )
