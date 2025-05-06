@@ -5,4 +5,4 @@ SELECT
     weather_main,
     weather_description,
     temperature
-    FROM {{ ref('int_bike_weather') }};
+    FROM {{ ref('int_bike_weather') }}
