@@ -11,6 +11,7 @@ renamed as (
     date_trunc('hour', timestamp) as weather_hour,
     date(timestamp) as weather_date,
     year(timestamp) as year,
+    month(timestamp) as month,
     temperature,
     temp_max,
     temp_min,

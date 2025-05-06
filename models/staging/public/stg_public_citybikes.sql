@@ -11,6 +11,7 @@ renamed as (
     date_trunc('hour', starttime) as trip_hour,
     date(starttime) as trip_date,
     year(starttime) as trip_year,
+    month(starttime) as trip_month,
     starttime AS start_time,
     stoptime AS stop_time,
     start_station_id,
