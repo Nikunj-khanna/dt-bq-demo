@@ -1,16 +1,11 @@
-WITH date_table AS (
-
-    SELECT
-        date_day
-    FROM
-        TABLE(GENERATOR(ROWCOUNT => 365 * 5)) 
-    QUALIFY
-        date_day := DATEADD(DAY, ROW_NUMBER() OVER () - 1, '2016-01-01')  -- Adjust start date as needed
-
+WITH date_spine AS (
+    SELECT 
+        DATEADD(DAY, ROW_NUMBER() OVER (ORDER BY SEQ4()) - 1, '2019-01-01') AS date_day
+    FROM 
+        TABLE(GENERATOR(ROWCOUNT => 365 * 5))  -- Generate 5 years of data (adjust as needed)
 ),
 
 final AS (
-
     SELECT
         date_day AS date,
         EXTRACT(YEAR FROM date_day) AS year,
@@ -27,7 +22,6 @@ final AS (
             ELSE 'Winter'
         END AS season
     FROM date_spine
-
 )
 
 SELECT * FROM final
