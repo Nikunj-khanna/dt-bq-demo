@@ -13,14 +13,23 @@ snapshot-paths: ["snapshots"]
 
 target-path: "target"  
 clean-targets:         
-    - "target"
-    - "dbt_modules"
+  - "target"
+  - "dbt_modules"
 
 models:
   snowflake_workshop:
     staging:
-      materialized: view
-      snowflake_warehouse: pc_dbt_wh
+      +materialized: view
+      +snowflake_warehouse: pc_dbt_wh
+    dim:
+      +materialized: table
+      +snowflake_warehouse: pc_dbt_wh
+    fact:
+      +materialized: table
+      +snowflake_warehouse: pc_dbt_wh
+    int:
+      +materialized: ephemeral
+      +snowflake_warehouse: pc_dbt_wh
     marts:
-      materialized: table
-      snowflake_warehouse: pc_dbt_wh_large
+      +materialized: table
+      +snowflake_warehouse: pc_dbt_wh_large
