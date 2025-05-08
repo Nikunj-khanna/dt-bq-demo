@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_public_citybikes
+    description: "Citybike trip data"
+    tests:
+      - not_null:
+          column_name: trip_duration
+      - not_null:
+          column_name: bike_id
+      - accepted_values:
+          column_name: user_type
+          values: ['Customer', 'Subscriber']
+
+  - name: stg_public_weather
+    description: "Weather data for Citibike analysis"
+    tests:
+      - not_null:
+          column_name: temperature
+      - not_null:
+          column_name: weather_main
+      - valid_timestamp:
+          column_name: weather_date
