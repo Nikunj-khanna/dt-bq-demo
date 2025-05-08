@@ -1,6 +1,6 @@
 WITH date_spine AS (
     SELECT 
-        DATEADD(DAY, ROW_NUMBER() OVER (ORDER BY SEQ4()) - 1, '2019-01-01') AS date_day
+        DATEADD(DAY, ROW_NUMBER() OVER (ORDER BY SEQ4()) - 1, '2016-01-01') AS date_day
     FROM 
         TABLE(GENERATOR(ROWCOUNT => 365 * 5))  -- Generate 5 years of data (adjust as needed)
 ),
@@ -8,10 +8,10 @@ WITH date_spine AS (
 final AS (
     SELECT
         date_day AS date,
-        EXTRACT(YEAR FROM date_day) AS year,
-        EXTRACT(MONTH FROM date_day) AS month,
-        EXTRACT(DAY FROM date_day) AS day,
-        EXTRACT(DAYOFWEEK FROM date_day) AS day_of_week,
+        CAST(EXTRACT(YEAR FROM date_day) AS INTEGER) AS year,
+        CAST(EXTRACT(MONTH FROM date_day) AS INTEGER) AS month,
+        CAST(EXTRACT(DAY FROM date_day) AS INTEGER) AS day,
+        CAST(EXTRACT(DAYOFWEEK FROM date_day) AS INTEGER) AS day_of_week,
         CASE WHEN EXTRACT(DAYOFWEEK FROM date_day) IN (1, 7) THEN TRUE ELSE FALSE END AS is_weekend,
         TO_CHAR(date_day, 'Month') AS month_name,
         TO_CHAR(date_day, 'Day') AS day_name,

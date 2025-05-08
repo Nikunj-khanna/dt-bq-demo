@@ -8,12 +8,12 @@ select trip_date,
     avg_trip_duration
     from(
 
-SELECT 
+SELECT distinct
     trip_date,
     trip_year,
     trip_month,
     weather_main,
-    weather_description,
+    LOWER(weather_description) as weather_description,
     AVG(temperature - 273.15) as avg_temp,user_type,
     avg(trip_duration) as avg_trip_duration,
     count(*) as total_trips
